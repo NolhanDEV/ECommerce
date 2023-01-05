@@ -53,7 +53,16 @@ class ProductsRepository extends ServiceEntityRepository
 
         return $result;
     }
-
+    public function findBelow50()
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.price <= 5000')
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     // /**
     //  * @return Products[] Returns an array of Products objects
     //  */
